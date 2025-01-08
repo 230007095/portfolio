@@ -1,0 +1,1009 @@
+/* Cyberpunk 2077 Tema Değişkenleri */
+:root {
+    /* Açık mod değişkenleri */
+    --primary-color-light: #00b4d8;    /* Canlı mavi */
+    --secondary-color-light: #7209b7;  /* Mor */
+    --background-color-light: #f8f9fa;
+    --surface-color-light: #ffffff;
+    --text-color-light: #2b2d42;
+    --accent-color-light: #4361ee;     /* Vurgu mavisi */
+    --neon-shadow-light: 0 0 15px rgba(0, 180, 216, 0.4);
+    
+    /* Koyu mod değişkenleri */
+    --primary-color-dark: #f9e900;
+    --secondary-color-dark: #00ffff;
+    --background-color-dark: #0a0a0f;
+    --surface-color-dark: #1a1a2e;
+    --text-color-dark: #e0e0e0;
+    --accent-color-dark: #ff2a6d;
+    --neon-shadow-dark: 0 0 20px rgba(249, 233, 0, 0.7);
+
+    /* Ortak değişkenler */
+    --section-padding: 5rem 2rem;
+    --transition: all 0.3s ease;
+    --glitch-transition: all 0.2s ease-in-out;
+}
+
+/* Sistem temasına göre otomatik mod seçimi */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: var(--primary-color-dark);
+        --secondary-color: var(--secondary-color-dark);
+        --background-color: var(--background-color-dark);
+        --surface-color: var(--surface-color-dark);
+        --text-color: var(--text-color-dark);
+        --accent-color: var(--accent-color-dark);
+        --neon-shadow: var(--neon-shadow-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --primary-color: var(--primary-color-light);
+        --secondary-color: var(--secondary-color-light);
+        --background-color: var(--background-color-light);
+        --surface-color: var(--surface-color-light);
+        --text-color: var(--text-color-light);
+        --accent-color: var(--accent-color-light);
+        --neon-shadow: var(--neon-shadow-light);
+    }
+}
+
+/* Temel stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rajdhani', 'Orbitron', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: var(--transition);
+}
+
+/* Header ve navigasyon */
+header {
+    background-color: var(--surface-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid var(--primary-color);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 1.5rem;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: var(--glitch-transition);
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--neon-shadow);
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Ana içerik bölümleri */
+main {
+    margin-top: 4rem;
+}
+
+section {
+    padding: var(--section-padding);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+section h1, section h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--primary-color);
+    position: relative;
+}
+
+/* Proje kartları */
+.proje-karti {
+    background-color: var(--surface-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.proje-karti:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--neon-shadow);
+    border-color: var(--primary-color);
+}
+
+.proje-karti::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color));
+    animation: scan-line 3s linear infinite;
+}
+
+@keyframes scan-line {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.proje-karti h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* İletişim bölümü */
+#iletisim {
+    background-color: var(--surface-color);
+    border-top: 2px solid var(--primary-color);
+}
+
+#iletisim p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    section {
+        padding: 3rem 1rem;
+    }
+
+    section h1, section h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Tema geçiş animasyonu */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Tema değiştirme düğmesi */
+.tema-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+}
+
+#tema-dugme {
+    background: var(--surface-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    backdrop-filter: blur(8px);
+}
+
+#tema-dugme:hover {
+    box-shadow: var(--neon-shadow);
+    transform: scale(1.1);
+}
+
+.tema-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Güneş ikonu animasyonu */
+.tema-icon.gunes {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    color: #ff9500;
+    text-shadow: 0 0 10px rgba(255, 149, 0, 0.5);
+}
+
+[data-tema="koyu"] .tema-icon.gunes {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(180deg) scale(0.5);
+}
+
+/* Ay ikonu animasyonu */
+.tema-icon.ay {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg) scale(0.5);
+    color: #f9e900;
+    text-shadow: 0 0 10px rgba(249, 233, 0, 0.7);
+}
+
+[data-tema="koyu"] .tema-icon.ay {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+/* Hover efektleri */
+#tema-dugme:hover .tema-icon {
+    animation: none; /* Önceki pulse animasyonunu kaldır */
+}
+
+#tema-dugme:hover .tema-icon.gunes {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+}
+
+#tema-dugme:hover .tema-icon.ay {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
+}
+
+/* Açık tema için özel düğme stili */
+[data-tema="acik"] #tema-dugme {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 5px 5px 10px #d1d1d1,
+                -5px -5px 10px #ffffff;
+}
+
+/* Koyu tema için özel düğme stili */
+[data-tema="koyu"] #tema-dugme {
+    background: linear-gradient(145deg, #1a1a2e, #0a0a0f);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3),
+                -5px -5px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Tema düğmesi için glowing efekti */
+#tema-dugme::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#tema-dugme:hover::before {
+    opacity: 1;
+}
+
+/* Sayfa yüklenme animasyonu */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth Scroll davranışı */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Yetenek çubukları için stiller */
+.yetenek-container {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.yetenek {
+    margin: 1.5rem 0;
+}
+
+.yetenek-isim {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.yetenek-bar {
+    height: 10px;
+    background: var(--surface-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.yetenek-seviye {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 5px;
+    position: relative;
+    animation: doldur 1.5s ease-out forwards;
+}
+
+@keyframes doldur {
+    from { width: 0; }
+}
+
+/* Gelişmiş proje kartı stilleri */
+.proje-resim img {
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.proje-resim:hover img {
+    transform: scale(1.05);
+}
+
+.proje-teknolojiler {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.proje-teknolojiler span {
+    padding: 0.3rem 0.8rem;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.proje-linkler {
+    display: flex;
+    gap: 1rem;
+}
+
+.proje-link {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.proje-link:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Modern iletişim formu stilleri */
+.iletisim-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-grup {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.form-grup input,
+.form-grup textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--text-color);
+    background: transparent;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.form-grup label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--background-color);
+    padding: 0 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.form-grup input:focus + label,
+.form-grup input:valid + label,
+.form-grup textarea:focus + label,
+.form-grup textarea:valid + label {
+    top: 0;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+/* Sosyal medya ikonları */
+.sosyal-medya {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.sosyal-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.sosyal-link:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Koyu tema için özel stiller */
+[data-tema="koyu"] {
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+    --background-color: var(--background-color-dark);
+    --surface-color: var(--surface-color-dark);
+    --text-color: var(--text-color-dark);
+    --accent-color: var(--accent-color-dark);
+    --neon-shadow: var(--neon-shadow-dark);
+}
+
+/* Açık tema için özel stiller */
+[data-tema="acik"] {
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+    --background-color: var(--background-color-light);
+    --surface-color: var(--surface-color-light);
+    --text-color: var(--text-color-light);
+    --accent-color: var(--accent-color-light);
+    --neon-shadow: var(--neon-shadow-light);
+}
+
+/* Proje kartları için özel stil eklemeleri */
+[data-tema="acik"] .proje-karti {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border: 2px solid #e0e0e0;
+    box-shadow: 5px 5px 15px #d1d1d1,
+                -5px -5px 15px #ffffff;
+}
+
+[data-tema="acik"] .proje-karti:hover {
+    border-color: var(--primary-color-light);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 180, 216, 0.2);
+}
+
+[data-tema="acik"] section h1,
+[data-tema="acik"] section h2 {
+    background: linear-gradient(45deg, var(--primary-color-light), var(--accent-color-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 180, 216, 0.2);
+}
+
+[data-tema="acik"] .proje-karti h3 {
+    color: var(--secondary-color-light);
+    font-weight: 600;
+}
+
+[data-tema="acik"] nav a:hover {
+    background: linear-gradient(45deg, var(--primary-color-light), var(--accent-color-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    border-color: var(--primary-color-light);
+}
+
+/* Koyu tema için özel stil eklemeleri */
+[data-tema="koyu"] .proje-karti {
+    background: linear-gradient(145deg, #1a1a2e, #0a0a0f);
+    border: 2px solid var(--primary-color-dark);
+    box-shadow: 0 4px 15px rgba(249, 233, 0, 0.2);
+}
+
+[data-tema="koyu"] .proje-karti:hover {
+    box-shadow: 0 0 25px rgba(249, 233, 0, 0.4);
+}
+
+[data-tema="koyu"] section h1,
+[data-tema="koyu"] section h2 {
+    text-shadow: 0 0 15px var(--primary-color-dark);
+}
+
+[data-tema="koyu"] .form-grup label {
+    background: var(--background-color-dark);
+}
+
+[data-tema="koyu"] .form-grup input,
+[data-tema="koyu"] .form-grup textarea {
+    border-color: var(--primary-color-dark);
+}
+
+/* Yeni stiller */
+.unvan {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cv-download {
+    margin-top: 2rem;
+}
+
+.cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: var(--surface-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.cv-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--neon-shadow);
+}
+
+.hakkimda-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.egitim {
+    margin-top: 2rem;
+}
+
+.egitim-item {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 3px solid var(--primary-color);
+    background: var(--surface-color);
+    border-radius: 0 5px 5px 0;
+}
+
+.egitim-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.tarih {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+}
+
+.iletisim-bilgileri {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.iletisim-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+}
+
+.iletisim-item i {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.iletisim-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.iletisim-item a:hover {
+    color: var(--primary-color);
+}
+
+/* Yetenekler bölümü için yeni stiller */
+.yetenekler-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.yetenek-kategori {
+    background: var(--surface-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.yetenek-kategori:hover {
+    transform: translateY(-5px);
+}
+
+.yetenek-kategori h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.yetenek-kartlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.yetenek-kart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, var(--surface-color), var(--background-color));
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.yetenek-kart:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--neon-shadow);
+}
+
+.yetenek-kart i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.yetenek-kart h4 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Web yetenekleri için yeni stiller */
+.web-yetenekler {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.web-yetenek {
+    width: 100%;
+}
+
+.web-yetenek-baslik {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.yuzde {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: var(--background-color);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 8px;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 6px;
+    position: relative;
+    animation: progressAnimation 1.5s ease-out forwards;
+    transform-origin: left;
+}
+
+.progress-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: glowAnimation 2s infinite linear;
+}
+
+@keyframes progressAnimation {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes glowAnimation {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(500%);
+    }
+}
+
+/* Koyu tema için özel stiller */
+[data-tema="koyu"] .progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-tema="koyu"] .web-yetenek-baslik {
+    color: var(--text-color-dark);
+}
+
+/* Responsive tasarım için */
+@media (max-width: 768px) {
+    .web-yetenekler {
+        padding: 0.5rem;
+    }
+    
+    .web-yetenek-baslik {
+        font-size: 1rem;
+    }
+}
+
+/* Yetenek seviyesi için stil */
+.seviye {
+    font-weight: 500;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--background-color);
+    border: 1px solid var(--accent-color);
+}
+
+/* Koyu tema için seviye stili */
+[data-tema="koyu"] .seviye {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-color-dark);
+    color: var(--accent-color-dark);
+}
+
+/* Progress bar stillerini güncelle */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: var(--background-color);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 8px;
+}
+
+.web-yetenek-baslik {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Sertifikalar Bölümü */
+#sertifikalar {
+    padding: var(--section-padding);
+}
+
+.sertifikalar-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.sertifika-karti {
+    background: var(--surface-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.sertifika-karti:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: var(--neon-shadow);
+}
+
+.sertifika-icerik {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sertifika-icerik h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.sertifika-icerik p {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.sertifika-icerik .tarih {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+.sertifika-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sertifika-link:hover {
+    background: var(--primary-color);
+    color: var(--surface-color);
+}
+
+.tum-sertifikalar {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.tum-sertifikalar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: var(--surface-color);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tum-sertifikalar-link:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--neon-shadow);
+}
+
+/* Koyu tema için özel stiller */
+[data-tema="koyu"] .sertifika-karti {
+    background: linear-gradient(145deg, #1a1a2e, #0a0a0f);
+}
+
+[data-tema="koyu"] .sertifika-icerik p {
+    color: var(--text-color-dark);
+}
+
+/* Sertifika açıklaması için yeni stil */
+.sertifika-aciklama {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0;
+    opacity: 0.9;
+}
+
+[data-tema="koyu"] .sertifika-aciklama {
+    color: var(--text-color-dark);
+    opacity: 0.8;
+}
+
+/* Sertifika kartı hover efektini güçlendir */
+.sertifika-karti {
+    border: 2px solid transparent;
+    background: var(--surface-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sertifika-karti:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: var(--neon-shadow);
+}
+
+/* Sertifika linkini daha belirgin yap */
+.sertifika-link {
+    margin-top: 1rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tum-sertifikalar-link {
+    margin-top: 3rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border: none;
+    padding: 1rem 2.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Mobil cihazlar için responsive düzen */
+@media (max-width: 1200px) {
+    .yetenekler-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .yetenekler-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Yetenek isimlerini daha belirgin yap */
+.web-yetenek-baslik span {
+    font-weight: 600;
+    font-size: 1rem;
+} 
